@@ -1,0 +1,106 @@
+<head>
+  <style>
+      body{
+
+background: url("../images/b4.jpg") 0px 0px no-repeat;
+background-size:cover;
+background-attachment: fixed;
+color: rgb(246, 243, 244);
+}
+
+
+  </style>
+</head>
+<div class="merkez">
+<form style="float: left; width: 33%;" method="post" action="/arastirmaci/add">
+    <label> Akademisyen Adı </label> <br>
+    <input type="text" name="ad">
+    <br>
+    <label> Akademisyen Soyadı</label> <br>
+    <input type="text" name="soyad">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<form style="float: left; width: 33%;" method="post" action="/yayin/add">
+    <label> Yayın Adı</label> <br>
+    <input type="text" name="ad">
+    <br>
+    <label>Yayın Yılı</label> <br>
+    <input type="text" name="yıl">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<form style="float: left; width: 33%;" method="post" action="/tur/add">
+    <label> Tür Adı</label> <br>
+    <input type="text" name="ad">
+    <br>
+    <label> Yer</label> <br>
+    <input type="text" name="yer">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<form style="float: left; margin-left: 190px; width: 25%;" method="post" action="/yayintoakademisyen/add">
+    <h3> Yayinı Akademisyene ekle</h3>
+    <label> Akademisyen Adı</label> <br>
+    <input type="text" name="aadi">
+    <br>
+    <label> Yayin Adı</label> <br>
+    <input type="text" name="yadi">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<form style="float: left;  width: 25%;" method="post" action="/turtoyayin/add">
+    <h3> Türü Yayina ekle</h3>
+    <label> Yayin Adı</label> <br>
+    <input type="text" name="yadi">
+    <br>
+    <label> Tür Adı</label> <br>
+    <input type="text" name="tadi">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<form style="float: left;  width: 25%;" method="post" action="/atoa/add">
+    <h3> Akademisyeni Akademisyene ekle</h3>
+    <label> Akademisyen Adı</label> <br>
+    <input type="text" name="a1adi">
+    <br>
+    <label> Akademisyen Adı</label> <br>
+    <input type="text" name="a2adi">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<div style="width: 33%; float: left;">
+    <h1>Akademisyen</h1>
+    <ul>
+        <% arastirmaci.forEach(function(a){ %>
+            <li>
+                <%=a.ad%>
+                    <%=a.soyad%>
+            </li>
+            <% }) %>
+    </ul>
+</div>
+<div style="width: 33%; float: left;">
+    <h1>Yayınlar</h1>
+    <ul>
+        <% yayin.forEach(function(y){ %>
+            <li>
+                <%=y.ad %>
+            </li>
+            <% }) %>
+    </ul>
+</div>
+<div style="width: 33%; float: left; ">
+    <h1>Tür</h1>
+    <ul>
+        <% tur.forEach(function(t){ %>
+            <li>
+                <%=t.ad %>
+            </li>
+            <% }) %>
+    </ul>
+    
+</div>
+</div>

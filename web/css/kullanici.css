@@ -1,0 +1,66 @@
+ body {
+
+      background: url("../images/b4.jpg") 0px 0px no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      color: rgb(246, 243, 244);
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    form input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+    }
+
+    form.example button {
+      float: left;
+      width: 20%;
+      padding: 10px;
+      background: #2196F3;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none;
+      cursor: pointer;
+    }
+
+    form.example button:hover {
+      background: #0b7dda;
+    }
+
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .footer{
+text-align: center;
+padding-top:75px;
+letter-spacing:1.6px;
+line-height:22px;
+}
+.footer p {
+font-size: 16px;
+color: #fff;
+margin: 0px;
+letter-spacing:1.4px;
+}
+.footer p a {
+color:#03A9F4;
+font-weight:blod;
+-webkit-transition-duration: 0.8s;
+transition-duration: 0.8s;
+}
+.footer p a:hover {
+color: #fff;
+ -webkit-transition-duration: 0.8s;
+ transition-duration: 0.8s;
+}

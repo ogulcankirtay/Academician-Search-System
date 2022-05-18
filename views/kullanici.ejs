@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/css/kullanici.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+  <form style="float: left; margin:auto;max-width:300px">
+    <input type="text" placeholder="Akademisyen ara.." id="search-box1" onkeyup="send1Data(this)">
+    <br><br>
+    <section id="searchResults1"></section>
+    <br>
+
+  </form>
+  <form style=" margin:auto;max-width:300px; min-height: 500px; ">
+    <input type="text" placeholder="Yayın ara.." id="search-box" onkeyup="sendData(this)">
+    <br><br>
+    <section id="searchResults"></section>
+
+  </form>
+
+
+  <script>
+    function sendData(e) {
+      const searhRes = document.getElementById('searchResults')
+      fetch('/getData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paylod: e.value,
+          tur: e.value,
+          yayin: e.value
+        })
+
+      }).then(res => res.json()).then(data => {
+        let payload = data.payload
+        let tur = data.tur
+        let yayin = data.yayin
+        console.log(payload)
+        console.log(tur)
+        searhRes.innerHTML = '';
+        if (payload.length < 1) {
+          searhRes.innerHTML = '<p>sonuç bulunamadı</p>'
+          return;
+        }
+        else {
+
+          searhRes.innerHTML += '<p>Türü:</p> <p>' + tur[0].ad + ' <p>Yayın Yeri </p> <p>' + tur[0].yer + '</p><p>Yayın Yılı<p/><p>' + yayin[0].yıl.low + ' </p> <h1>Akademisyenleri</h1>'
+          for (var i = 0; i < payload.length; i++) {
+            searhRes.innerHTML += ' <p>' + payload[i].ad + '</p>'
+
+          }
+
+
+
+          return;
+        }
+      })
+    }
+    //akademisyen araması
+    function send1Data(e) {
+      const searhRes = document.getElementById('searchResults1')
+      fetch('getaData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paylod: e.value,
+          tur: e.value,
+          aka: e.value
+        })
+
+      }).then(res => res.json()).then(data => {
+        let payload = data.payload
+        let tur = data.tur
+        let ak = data.aka
+        console.log(payload)
+        console.log(tur)
+        console.log(ak)
+        searhRes.innerHTML = '';
+        if (payload.length < 1) {
+          searhRes.innerHTML = '<p>sonuç bulunamadı</p>'
+          return;
+        }
+        else {
+
+          searhRes.innerHTML = '<h1>' + e.value + '</h1>'
+          for (var i = 0; i < payload.length; i++) {
+            console.log("yayın adı " + payload[i])
+            console.log("tur adı " + tur[i].ad)
+            searhRes.innerHTML += '<h4>Yayın :</h4><p>' + payload[i].ad + '</p>  <p>Türü : ' + tur[i].ad + '</p> <p>yılı: '
+              + payload[i].yıl.low + '</p>'
+
+          }
+          searhRes.innerHTML += '<h1>Çalıştığı Kişiler</h1>'
+          for (var i = 0; i < ak.length; i++) {
+            searhRes.innerHTML += '<p>' + ak[i].ad + '</p><section id="searchResultsCalisan"></section>'
+          }
+
+          return;
+        }
+      })
+    }
+
+
+  </script>
+  <div class="footer">
+    <p>© Search form. All Rights Reserved | Design by <a href="https://www.linkedin.com/in/o%C4%9Fulcan-k%C4%B1rtay/">
+        Oğulcan Kırtay </a></p>
+  </div>
+</body>
+
+</html>
